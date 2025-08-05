@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'app.vercel'
-version = '0.0.1-SNAPSHOT'
+version = project.hasProperty('appVersion') ? project.getProperty('appVersion') : '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
