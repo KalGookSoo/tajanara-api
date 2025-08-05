@@ -3,6 +3,7 @@ package app.vercel.tajanara.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
@@ -32,4 +33,13 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(LocaleChangeInterceptor());
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**");
+        registry.addMapping("/swagger-ui/**");
+        registry.addMapping("/v3/api-docs/**");
+        registry.addMapping("/webjars/**");
+        registry.addMapping("/swagger-resources/**");
+        registry.addMapping("/swagger-ui.html");
+    }
 }
