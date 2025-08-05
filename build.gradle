@@ -11,7 +11,7 @@ version = project.hasProperty('appVersion') ? project.getProperty('appVersion') 
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
