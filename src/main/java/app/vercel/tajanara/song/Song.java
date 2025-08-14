@@ -1,12 +1,18 @@
 package app.vercel.tajanara.song;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 /**
  * 노래
  */
-@Data
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
+@EqualsAndHashCode
+
 @Entity
 @Table(name = "tb_song")
 public class Song {
