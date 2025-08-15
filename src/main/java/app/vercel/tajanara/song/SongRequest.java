@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
-public class CreateSongRequest implements Serializable {
+public class SongRequest implements Serializable {
 
     @NotBlank
     private final String title;

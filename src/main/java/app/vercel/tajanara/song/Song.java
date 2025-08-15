@@ -2,6 +2,7 @@ package app.vercel.tajanara.song;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.lang.NonNull;
 
 /**
  * 노래
@@ -41,5 +42,11 @@ public class Song {
      */
     @Column(nullable = false, columnDefinition = "TEXT")
     private String lyrics;
+
+    public void update(@NonNull String title, @NonNull String artist, @NonNull String lyrics) {
+        this.title = title;
+        this.artist = artist;
+        this.lyrics = lyrics;
+    }
 
 }

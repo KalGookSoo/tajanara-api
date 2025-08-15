@@ -1,5 +1,6 @@
 package app.vercel.tajanara.song;
 
+import app.vercel.tajanara.song.service.SongService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,40 +13,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/songs")
 public class SongController {
 
-    private final SongRepository songRepository;
+    private final SongService songService;
 
     @PostMapping
-    public ResponseEntity<Map<String, Song>> createSong(@RequestBody @Valid CreateSongRequest request) {
-        Song song = Song.builder()
-                .title(request.getTitle())
-                .artist(request.getArtist())
-                .lyrics(request.getLyrics())
-                .build();
-
-        Song newSong = songRepository.save(song);
-
+    public ResponseEntity<Map<String, Song>> createSong(@RequestBody @Valid SongRequest request) {
+        Song song = songService.createSong(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Map.of("song", newSong));
+                .body(Map.of("song", song));
     }
 
     @GetMapping
     public ResponseEntity<PagedModel<Song>> getSongs(@PageableDefault(size = 20, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Song> page = songRepository.findAll(pageable);
-        return ResponseEntity.ok(new PagedModel<>(page));
+        Page<Song> page = songService.getSongs(pageable);
+        PagedModel<Song> pagedModel = new PagedModel<>(page);
+        return ResponseEntity.ok(pagedModel);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Song>> getSong(@PathVariable Long id) {
-        Song song = songRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("No song found for id: " + id));
+    public ResponseEntity<Map<String, Song>> getSong(@PathVariable Long id, @RequestBody @Valid SongRequest request) {
+        Song song = songService.getSongById(id);
         return ResponseEntity.ok(Map.of("song", song));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, Song>> updateSong(@PathVariable Long id, @RequestBody @Valid SongRequest request) {
+        Song song = songService.updateSongById(id, request);
+        return ResponseEntity.ok(Map.of("song", song));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSong(@PathVariable Long id) {
+        songService.deleteSongById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
