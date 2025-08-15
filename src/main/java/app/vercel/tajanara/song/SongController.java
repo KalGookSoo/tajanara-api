@@ -36,7 +36,7 @@ public class SongController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Song>> getSong(@PathVariable Long id, @RequestBody @Valid SongRequest request) {
+    public ResponseEntity<Map<String, Song>> getSong(@PathVariable Long id) {
         Song song = songService.getSongById(id);
         return ResponseEntity.ok(Map.of("song", song));
     }
