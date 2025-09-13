@@ -41,5 +41,6 @@ out/
 **/datasource*.yaml
 
 .junie
+.aiassistant
 *.db
 application-*.properties
