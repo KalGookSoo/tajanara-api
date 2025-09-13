@@ -1,15 +1,18 @@
-package app.vercel.tajanara.song;
+package app.vercel.tajanara.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+@ToString
+@EqualsAndHashCode
 @Getter
 @AllArgsConstructor
-public class SongRequest implements Serializable {
-
+public final class SongRequest implements Serializable {
     @NotBlank
     private final String title;
 
@@ -18,5 +21,4 @@ public class SongRequest implements Serializable {
 
     @NotBlank
     private final String lyrics;
-
 }

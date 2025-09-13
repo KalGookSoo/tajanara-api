@@ -1,45 +1,31 @@
-package app.vercel.tajanara.song;
+package app.vercel.tajanara.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import org.hibernate.annotations.Comment;
 import org.springframework.lang.NonNull;
 
-/**
- * 노래
- */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Builder
-@EqualsAndHashCode
-
+@EqualsAndHashCode(callSuper = false)
+@Comment("노래")
 @Entity
 @Table(name = "tb_song")
-public class Song {
-
-    /**
-     * 식별자
-     */
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    /**
-     * 제목
-     */
+public class Song extends BaseEntity {
+    @Comment("제목")
     @Column(nullable = false)
     private String title;
 
-    /**
-     * 아티스트
-     */
+    @Comment("아티스트")
     @Column(nullable = false)
     private String artist;
 
-    /**
-     * 가사
-     */
+    @Comment("가사")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String lyrics;
 
@@ -48,5 +34,4 @@ public class Song {
         this.artist = artist;
         this.lyrics = lyrics;
     }
-
 }
