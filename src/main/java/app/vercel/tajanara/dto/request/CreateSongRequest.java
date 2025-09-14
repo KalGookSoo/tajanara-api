@@ -12,7 +12,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Getter
 @AllArgsConstructor
-public final class SongRequest implements Serializable {
+public final class CreateSongRequest implements Serializable {
     @NotBlank
     private final String title;
 

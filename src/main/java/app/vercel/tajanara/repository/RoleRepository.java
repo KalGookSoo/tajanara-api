@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface RoleRepository extends Repository<Role, String> {
     Optional<Role> findByName(String name);
 
+    Iterable<Role> findAllByNameIn(Iterable<String> names);
+
     Role save(Role role);
 }

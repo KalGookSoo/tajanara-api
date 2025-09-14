@@ -1,6 +1,6 @@
 package app.vercel.tajanara.controller;
 
-import app.vercel.tajanara.dto.request.SongRequest;
+import app.vercel.tajanara.dto.request.CreateSongRequest;
 import app.vercel.tajanara.dto.response.SongResponse;
 import app.vercel.tajanara.service.SongService;
 import jakarta.validation.Valid;
@@ -23,14 +23,14 @@ public class SongController {
     private final SongService songService;
 
     @PostMapping
-    public ResponseEntity<Map<String, SongResponse>> createSong(@RequestBody @Valid SongRequest request) {
+    public ResponseEntity<Map<String, SongResponse>> createSong(@RequestBody @Valid CreateSongRequest request) {
         SongResponse song = songService.createSong(request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Map.of("song", song));
     }
 
     @GetMapping
-    public ResponseEntity<PagedModel<SongResponse>> getSongs(@PageableDefault(size = 20, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<PagedModel<SongResponse>> getSongs(@PageableDefault(size = 20, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<SongResponse> page = songService.getSongs(pageable);
         PagedModel<SongResponse> pagedModel = new PagedModel<>(page);
         return ResponseEntity.ok(pagedModel);
@@ -43,7 +43,7 @@ public class SongController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, SongResponse>> updateSong(@PathVariable String id, @RequestBody @Valid SongRequest request) {
+    public ResponseEntity<Map<String, SongResponse>> updateSong(@PathVariable String id, @RequestBody @Valid CreateSongRequest request) {
         SongResponse song = songService.updateSongById(id, request);
         return ResponseEntity.ok(Map.of("song", song));
     }

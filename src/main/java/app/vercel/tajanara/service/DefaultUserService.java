@@ -4,6 +4,7 @@ import app.vercel.tajanara.domain.Role;
 import app.vercel.tajanara.domain.User;
 import app.vercel.tajanara.domain.vo.RoleName;
 import app.vercel.tajanara.dto.request.CreateUserRequest;
+import app.vercel.tajanara.dto.response.RoleResponse;
 import app.vercel.tajanara.dto.response.UserResponse;
 import app.vercel.tajanara.repository.RoleRepository;
 import app.vercel.tajanara.repository.UserRepository;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Slf4j
@@ -50,10 +52,15 @@ public class DefaultUserService implements UserService {
     @Override
     public UserResponse createUser(CreateUserRequest request) {
         User user = User.create(request.getUsername(), request.getPassword(), request.getName());
-        Role role = roleRepository.findByName(request.getRole().name())
-                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 역할: " + request.getRole()));
-        user.addRole(role);
+        List<String> roleNames = request.getRoles().stream().map(RoleName::name).toList();
+        Iterable<Role> roles = roleRepository.findAllByNameIn(roleNames);
+        roles.forEach(user::addRole);
         userRepository.save(user);
-        return new UserResponse(user);
+
+        UserResponse userResponse = new UserResponse(user);
+        for (Role role : roles) {
+            userResponse.getRoles().add(new RoleResponse(role));
+        }
+        return userResponse;
     }
 }

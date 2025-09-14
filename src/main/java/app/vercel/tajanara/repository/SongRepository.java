@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
+import java.util.Collection;
 import java.util.Optional;
 
 public interface SongRepository extends Repository<Song, String> {
@@ -15,6 +16,8 @@ public interface SongRepository extends Repository<Song, String> {
     Optional<Song> findById(String id);
 
     Song getReferenceById(String id);
+
+    Collection<Song> findAllByIdIn(Collection<String> ids);
 
     void deleteById(String id);
 }

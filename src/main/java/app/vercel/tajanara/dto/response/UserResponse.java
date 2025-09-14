@@ -26,9 +26,5 @@ public class UserResponse extends BaseModel {
         setLastModifiedDate(user.getLastModifiedDate());
         this.username = user.getUsername();
         this.name = user.getName();
-        user.getRoles()
-                .stream()
-                .map(RoleResponse::new)
-                .forEach(this.roles::add);
     }
 }

@@ -1,7 +1,7 @@
 package app.vercel.tajanara.service;
 
 import app.vercel.tajanara.domain.Song;
-import app.vercel.tajanara.dto.request.SongRequest;
+import app.vercel.tajanara.dto.request.CreateSongRequest;
 import app.vercel.tajanara.dto.response.SongResponse;
 import app.vercel.tajanara.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class DefaultSongService implements SongService {
     private final SongRepository songRepository;
 
     @Override
-    public SongResponse createSong(SongRequest request) {
+    public SongResponse createSong(CreateSongRequest request) {
         Song song = Song.builder()
                 .title(request.getTitle())
                 .artist(request.getArtist())
@@ -44,7 +44,7 @@ public class DefaultSongService implements SongService {
     }
 
     @Override
-    public SongResponse updateSongById(String id, SongRequest request) {
+    public SongResponse updateSongById(String id, CreateSongRequest request) {
         Song song = Optional.ofNullable(songRepository.getReferenceById(id))
                 .orElseThrow(() -> new NoSuchElementException("존재하지 않는 노래: " + id));
         song.update(
