@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoleResponse extends BaseModel {
+
     private String name;
 
     private String alias;
@@ -22,4 +23,5 @@ public class RoleResponse extends BaseModel {
         this.name = role.getName();
         this.alias = role.getAlias();
     }
+
 }

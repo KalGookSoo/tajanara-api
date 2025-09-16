@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails, OAuth2User {
+
     private final User user;
 
     private final Map<String, Object> attributes;
@@ -113,4 +114,5 @@ public class UserPrincipal implements UserDetails, OAuth2User {
                 .stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(role));
     }
+
 }

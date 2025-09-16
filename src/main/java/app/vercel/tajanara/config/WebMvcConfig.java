@@ -13,6 +13,7 @@ import java.util.Locale;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
     @Bean
     public LocaleResolver LocaleResolver() {
         SessionLocaleResolver resolver = new SessionLocaleResolver();
@@ -41,4 +42,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/swagger-resources/**");
         registry.addMapping("/swagger-ui.html");
     }
+
 }

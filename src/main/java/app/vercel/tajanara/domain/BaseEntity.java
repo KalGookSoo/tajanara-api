@@ -23,6 +23,7 @@ import java.util.Objects;
 @Setter(AccessLevel.PROTECTED)
 @ToString
 abstract public class BaseEntity implements Serializable {
+
     @Id
     @UuidGenerator
     @Column(length = 36, nullable = false, updatable = false)
@@ -63,4 +64,5 @@ abstract public class BaseEntity implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }

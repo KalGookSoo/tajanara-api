@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 public final class CreateScoreRequest implements Serializable {
+
     @NotBlank
     private final String userId;
 
@@ -22,4 +23,5 @@ public final class CreateScoreRequest implements Serializable {
 
     @NotNull
     private final Integer value;
+
 }

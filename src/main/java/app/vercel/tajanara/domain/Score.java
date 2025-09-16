@@ -15,6 +15,7 @@ import org.springframework.lang.NonNull;
 @Entity
 @Table(name = "tb_score")
 public class Score extends BaseEntity {
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @Comment("계정 식별자")
@@ -34,4 +35,5 @@ public class Score extends BaseEntity {
         this.song = song;
         this.value = value;
     }
+
 }

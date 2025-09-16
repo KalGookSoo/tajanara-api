@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class SongResponse extends BaseModel {
+
     private String title;
 
     private String artist;
@@ -25,4 +26,5 @@ public final class SongResponse extends BaseModel {
         this.artist = song.getArtist();
         this.lyrics = song.getLyrics();
     }
+
 }

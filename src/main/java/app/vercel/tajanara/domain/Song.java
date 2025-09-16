@@ -17,6 +17,7 @@ import org.springframework.lang.NonNull;
 @Entity
 @Table(name = "tb_song")
 public class Song extends BaseEntity {
+
     @Comment("제목")
     @Column(nullable = false)
     private String title;
@@ -34,4 +35,5 @@ public class Song extends BaseEntity {
         this.artist = artist;
         this.lyrics = lyrics;
     }
+
 }

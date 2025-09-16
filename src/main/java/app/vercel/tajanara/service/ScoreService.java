@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ScoreService {
+
     ScoreResponse createScore(CreateScoreRequest request);
 
     Page<ScoreResponse> getScores(Pageable pageable);
@@ -13,4 +14,5 @@ public interface ScoreService {
     ScoreResponse getScoreById(String id);
 
     void deleteScoreById(String id);
+
 }

@@ -23,6 +23,7 @@ import java.util.Optional;
 @Transactional
 @Service
 public class DefaultScoreService implements ScoreService {
+
     private final ScoreRepository scoreRepository;
 
     private final UserRepository userRepository;
@@ -48,6 +49,9 @@ public class DefaultScoreService implements ScoreService {
     @Override
     public Page<ScoreResponse> getScores(Pageable pageable) {
         Page<Score> page = scoreRepository.findAll(pageable);
+        if (page.isEmpty()) {
+            return Page.empty(pageable);
+        }
         var userIds = page.getContent().stream().map(s -> s.getUser().getId()).distinct().toList();
         var songIds = page.getContent().stream().map(s -> s.getSong().getId()).distinct().toList();
         var users = userRepository.findAllByIdIn(userIds).stream().map(UserResponse::new).toList();
@@ -72,4 +76,5 @@ public class DefaultScoreService implements ScoreService {
     public void deleteScoreById(String id) {
         scoreRepository.deleteById(id);
     }
+
 }

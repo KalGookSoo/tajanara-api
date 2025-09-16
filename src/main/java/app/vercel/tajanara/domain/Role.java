@@ -25,6 +25,7 @@ import static lombok.AccessLevel.PROTECTED;
 @DynamicInsert
 @DynamicUpdate
 public class Role extends BaseEntity {
+
     @Comment("이름")
     private String name;
 
@@ -38,4 +39,5 @@ public class Role extends BaseEntity {
         this.name = name;
         this.alias = alias;
     }
+
 }

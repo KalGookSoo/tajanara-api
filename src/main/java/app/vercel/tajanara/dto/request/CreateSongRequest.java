@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 public final class CreateSongRequest implements Serializable {
+
     @NotBlank
     private final String title;
 
@@ -21,4 +22,5 @@ public final class CreateSongRequest implements Serializable {
 
     @NotBlank
     private final String lyrics;
+
 }

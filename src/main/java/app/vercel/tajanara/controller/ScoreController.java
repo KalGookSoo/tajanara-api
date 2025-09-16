@@ -6,9 +6,8 @@ import app.vercel.tajanara.service.ScoreService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/scores")
 public class ScoreController {
+
     private final ScoreService scoreService;
 
     @PostMapping
@@ -30,8 +30,10 @@ public class ScoreController {
     }
 
     @GetMapping
-    public ResponseEntity<PagedModel<ScoreResponse>> getScores(@PageableDefault(size = 20, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<ScoreResponse> page = scoreService.getScores(pageable);
+    public ResponseEntity<PagedModel<ScoreResponse>> getScores(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "10") int pageSize) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdDate");
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
+        Page<ScoreResponse> page = scoreService.getScores(pageRequest);
         PagedModel<ScoreResponse> pagedModel = new PagedModel<>(page);
         return ResponseEntity.ok(pagedModel);
     }
@@ -47,4 +49,5 @@ public class ScoreController {
         scoreService.deleteScoreById(id);
         return ResponseEntity.noContent().build();
     }
+
 }

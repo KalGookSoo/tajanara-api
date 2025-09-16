@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface SongRepository extends Repository<Song, String> {
+
     void save(Song song);
 
     Page<Song> findAll(Pageable pageable);
@@ -20,4 +21,5 @@ public interface SongRepository extends Repository<Song, String> {
     Collection<Song> findAllByIdIn(Collection<String> ids);
 
     void deleteById(String id);
+
 }

@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class ScoreResponse extends BaseModel {
+
     private String userId;
 
     private String songId;
@@ -31,4 +32,5 @@ public final class ScoreResponse extends BaseModel {
         this.songId = score.getSong().getId();
         this.value = score.getValue();
     }
+
 }

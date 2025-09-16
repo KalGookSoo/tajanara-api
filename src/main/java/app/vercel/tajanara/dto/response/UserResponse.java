@@ -12,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserResponse extends BaseModel {
+
     private String username;
 
     private String name;
@@ -27,4 +28,5 @@ public class UserResponse extends BaseModel {
         this.username = user.getUsername();
         this.name = user.getName();
     }
+
 }

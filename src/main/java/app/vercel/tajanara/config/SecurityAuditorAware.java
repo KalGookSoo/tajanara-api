@@ -13,6 +13,7 @@ import java.util.Optional;
 @Configuration
 @EnableJpaAuditing
 public class SecurityAuditorAware implements AuditorAware<String> {
+
     @Override
     @NonNull
     public Optional<String> getCurrentAuditor() {
@@ -23,4 +24,5 @@ public class SecurityAuditorAware implements AuditorAware<String> {
                 .map(UserPrincipal.class::cast)
                 .map(UserPrincipal::getId);
     }
+
 }

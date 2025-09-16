@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface SongService {
+
     SongResponse createSong(CreateSongRequest request);
 
     Page<SongResponse> getSongs(Pageable pageable);
@@ -15,4 +16,5 @@ public interface SongService {
     SongResponse updateSongById(String id, CreateSongRequest request);
 
     void deleteSongById(String id);
+
 }

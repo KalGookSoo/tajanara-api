@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter(AccessLevel.PROTECTED)
 @NoArgsConstructor
 public abstract class BaseModel implements Serializable {
+
     @Schema(description = "식별자(UUID)", example = "8f14e45f-ea9d-4b1c-a3a4-12c4b2a9c001")
     private String id;
 
@@ -26,4 +27,5 @@ public abstract class BaseModel implements Serializable {
 
     @Schema(description = "최종 수정 일시", example = "2025-01-02T10:30:00")
     private LocalDateTime lastModifiedDate;
+
 }

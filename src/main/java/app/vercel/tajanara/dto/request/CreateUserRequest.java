@@ -16,6 +16,7 @@ import java.util.Collection;
 @Getter
 @AllArgsConstructor
 public final class CreateUserRequest implements Serializable {
+
     @NotNull
     @NotBlank
     private final String username;
@@ -28,4 +29,5 @@ public final class CreateUserRequest implements Serializable {
 
     @NotNull
     private final Collection<RoleName> roles;
+
 }

@@ -11,6 +11,7 @@ import java.io.Serializable;
 @ToString
 @Getter
 public final class ValidationError implements Serializable {
+
     private final String code;
 
     private final String message;
@@ -25,4 +26,5 @@ public final class ValidationError implements Serializable {
         this.field = error.getField();
         this.rejectedValue = error.getRejectedValue();
     }
+
 }

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Profile;
 @RequiredArgsConstructor
 @Configuration
 public class AppInitializer implements CommandLineRunner {
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final UserService userService;
@@ -22,4 +23,5 @@ public class AppInitializer implements CommandLineRunner {
         logger.info("시스템 관리자 계정을 생성합니다.");
         userService.initialSystemUsers();
     }
+
 }

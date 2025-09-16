@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface UserRepository extends Repository<User, String> {
+
     void save(User user);
 
     Optional<User> findById(String id);
@@ -18,4 +19,5 @@ public interface UserRepository extends Repository<User, String> {
 
     @EntityGraph(attributePaths = {"roles"})
     Optional<User> findByUsername(String username);
+
 }
