@@ -6,9 +6,8 @@ import app.vercel.tajanara.service.SongService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/songs")
+@RequestMapping("/songs")
 public class SongController {
 
     private final SongService songService;
@@ -31,8 +30,10 @@ public class SongController {
     }
 
     @GetMapping
-    public ResponseEntity<PagedModel<SongResponse>> getSongs(@PageableDefault(size = 20, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<SongResponse> page = songService.getSongs(pageable);
+    public ResponseEntity<PagedModel<SongResponse>> getSongs(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "10") int pageSize) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdDate");
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
+        Page<SongResponse> page = songService.getSongs(pageRequest);
         PagedModel<SongResponse> pagedModel = new PagedModel<>(page);
         return ResponseEntity.ok(pagedModel);
     }

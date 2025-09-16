@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/scores")
+@RequestMapping("/scores")
 public class ScoreController {
 
     private final ScoreService scoreService;
