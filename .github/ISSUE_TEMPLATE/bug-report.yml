@@ -1,0 +1,75 @@
+name: 버그 리포트
+description: 버그를 신고하고 재현 정보를 공유해주세요.
+title: "[버그] 제목을 입력하세요"
+labels: ["bug", "needs-triage"]
+assignees: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 버그 설명
+      description: 어떤 문제가 발생했는지 명확하게 적어주세요.
+      placeholder: 예) 노래 생성 API에서 400 에러가 발생합니다.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 방법
+      description: 문제가 재현되는 구체적인 단계를 적어주세요.
+      placeholder: |
+        1. ~로 요청을 보냄
+        2. 응답 상태 코드 400 확인
+        3. 로그에 NullPointerException 표시
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 결과
+      placeholder: 예) 유효성 검증 실패 시 422를 반환하고 상세 메시지를 제공합니다.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 실제 결과
+      placeholder: 예) 400을 반환하며 메시지가 비어있음
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 버전/환경
+      description: 앱/API 버전, 실행 환경(로컬/테스트/프로덕션), JDK 등
+      placeholder: 예) v1.2.3, 로컬, JDK 21, 스프링 부트 3.3.2
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: 로그/스크린샷
+      description: 로그 또는 이미지 링크를 붙여주세요.
+    validations:
+      required: false
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 심각도
+      options:
+        - blocker
+        - critical
+        - major
+        - minor
+        - trivial
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: 확인 사항
+      options:
+        - label: 중복 이슈가 아닌지 검색했습니다.
+          required: true
+        - label: 민감한 정보가 포함되지 않았습니다.
+          required: true

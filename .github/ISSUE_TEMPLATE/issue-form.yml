@@ -1,0 +1,50 @@
+name: 간단 이슈 템플릿
+description: 깃헙 이슈를 간단히 등록하기 위한 템플릿입니다.
+title: "[이슈] 제목을 입력하세요"
+labels: ["needs-triage"]
+assignees: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 설명
+      description: 어떤 문제가 있거나 어떤 기능이 필요한지 간단히 작성해주세요.
+      placeholder: 예) 노래 생성 API에서 400 에러가 발생합니다.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 방법 (선택)
+      description: 문제가 재현되는 단계가 있다면 적어주세요.
+      placeholder: |
+        1. ~로 요청을 보냄
+        2. 응답 상태 코드 400 확인
+        3. 로그에 NullPointerException 표시
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 결과 (선택)
+      description: 기대했던 동작을 적어주세요.
+      placeholder: 예) 유효성 검증 실패 시 상세 메시지와 함께 422를 반환해야 합니다.
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: 추가 정보 (선택)
+      description: 스크린샷, 로그, 환경 정보 등을 적어주세요.
+      placeholder: 예) 로컬 환경, JDK 21, 스프링 부트 3.3.2
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: 확인 사항
+      options:
+        - label: 중복 이슈가 아닌지 검색했습니다.
+          required: true
+        - label: 민감한 정보가 포함되지 않았습니다.
+          required: true

@@ -1,0 +1,28 @@
+name: 문서 이슈
+description: 문서의 누락, 오탈자, 가이드 보완 등을 제보해주세요.
+title: "[문서] 제목을 입력하세요"
+labels: ["documentation", "needs-triage"]
+assignees: []
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 문서/페이지 경로
+      description: 어떤 문서인지 파일 경로나 URL을 적어주세요.
+      placeholder: 예) docs/ERD.md
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: 문제 내용
+      description: 누락/오류/개선이 필요한 내용을 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 제안 수정안(선택)
+      description: 어떻게 수정하면 좋을지 제안해주세요.
+    validations:
+      required: false
