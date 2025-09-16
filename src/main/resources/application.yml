@@ -1,0 +1,54 @@
+server:
+  servlet:
+    context-path: /tajanara-api
+  port: 8080
+spring:
+  application:
+    name: tajanara-api
+    version: 1.0.0
+  jpa:
+    properties:
+      hibernate:
+        highlight_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  main:
+    lazy-initialization: true
+  output:
+    ansi:
+      enabled: always
+  data:
+    rest:
+      base-path: /api
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+        security: debug
+        orm:
+          jpa: debug
+      hibernate:
+        sql: debug
+        orm:
+          jdbc:
+            bind: trace
+      springdoc:
+        core:
+          utils:
+            SpringDocAnnotationsUtils: ERROR
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true

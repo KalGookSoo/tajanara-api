@@ -44,3 +44,4 @@ out/
 .aiassistant
 *.db
 application-*.properties
+application-*.yml
