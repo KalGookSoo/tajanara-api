@@ -17,4 +17,6 @@ public interface SongService {
 
     void deleteSongById(String id);
 
+    void initialDefaultSongs();
+
 }

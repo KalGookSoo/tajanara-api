@@ -1,5 +1,6 @@
 package app.vercel.tajanara.config;
 
+import app.vercel.tajanara.service.SongService;
 import app.vercel.tajanara.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -17,11 +18,14 @@ public class AppInitializer implements CommandLineRunner {
 
     private final UserService userService;
 
+    private final SongService songService;
+
     @Override
     public void run(String... args) {
         logger.info("애플리케이션을 시작합니다.");
         logger.info("시스템 관리자 계정을 생성합니다.");
         userService.initialSystemUsers();
+        songService.initialDefaultSongs();
     }
 
 }
