@@ -30,7 +30,7 @@ public final class ScoreResponse extends BaseModel {
         setLastModifiedDate(score.getLastModifiedDate());
         this.userId = score.getUser().getId();
         this.songId = score.getSong().getId();
-        this.value = score.getValue();
+        this.value = score.getScore();
     }
 
 }

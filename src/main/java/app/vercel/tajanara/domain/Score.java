@@ -3,7 +3,6 @@ package app.vercel.tajanara.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Comment;
-import org.springframework.lang.NonNull;
 
 @Getter
 @NoArgsConstructor
@@ -28,12 +27,6 @@ public class Score extends BaseEntity {
 
     @Comment("값")
     @Column(nullable = false)
-    private Integer value;
-
-    public void update(@NonNull User user, @NonNull Song song, @NonNull Integer value) {
-        this.user = user;
-        this.song = song;
-        this.value = value;
-    }
+    private Integer score;
 
 }

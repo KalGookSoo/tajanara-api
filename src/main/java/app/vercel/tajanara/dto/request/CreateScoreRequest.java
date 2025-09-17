@@ -22,6 +22,6 @@ public final class CreateScoreRequest implements Serializable {
     private final String songId;
 
     @NotNull
-    private final Integer value;
+    private final Integer score;
 
 }

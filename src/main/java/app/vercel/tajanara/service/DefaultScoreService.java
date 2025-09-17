@@ -39,7 +39,7 @@ public class DefaultScoreService implements ScoreService {
         Score score = Score.builder()
                 .user(user)
                 .song(song)
-                .value(request.getValue())
+                .score(request.getScore())
                 .build();
         scoreRepository.save(score);
         return new ScoreResponse(score);
